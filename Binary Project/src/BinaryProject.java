@@ -67,16 +67,89 @@ int randomNum = (int) (Math.random()* numberLine.size());
 int target = numberLine.get(randomNum);
 
 System.out.println("\n\nYour target number is:  " + target);
-System.out.println("\n\nPlease enter correct answers to the following questions about binary search tracing:");
-System.out.println("\n\nPass#   Left   Right   Middle   numberLine[middle]");	
+System.out.println("\n\nPlease enter the correct answers about binary search tracing:\n");
 
-
+int qs = 0;
+int qsCorrect = 0;
+int qsWrong = 0;
+int passNumber = 0; 
 int left = 0; 
 int right = numberLine.size()-1;
 
-while(left < right)
+while(left <= right)
 	{
+	
+	System.out.println("What is the pass Number for this cycle?\n");
+	qs++;
+	passNumber++;
+	if(userInput.nextInt()== passNumber)
+	{
+		System.out.println("You are correct!\n");
+		qsCorrect++;
+	}
+	else
+	{
+		System.out.println("That is wrong.\n");
+		qsWrong++;
+	}
+	
+	System.out.println("What is the left index number for this cycle?\n");
+	qs++;
+	if(userInput.nextInt()== left)
+	{
+		System.out.println("You are correct!\n");
+		qsCorrect++;
+	}
+	else
+	{
+		System.out.println("That is wrong.\n");
+		qsWrong++;
+	}
+	
+	System.out.println("What is the right index number for this cycle?\n");
+	qs++;
+	if(userInput.nextInt()== right)
+	{
+		System.out.println("You are correct!\n");
+		qsCorrect++;
+	}
+	else
+	{
+		System.out.println("That is wrong.\n");
+		qsWrong++;
+	}
+	
+	
+	
 	int middle = (left+right)/2;
+	
+	System.out.println("What is the middle index for this cycle?\n");
+	qs++;
+	if(userInput.nextInt()== middle)
+	{
+		System.out.println("You are correct!\n");
+		qsCorrect++;
+	}
+	else
+	{
+		System.out.println("That is wrong.\n");
+		qsWrong++;
+	}
+	
+	System.out.println("What is the numberLine[middle] value for this cycle?\n");
+	qs++;
+	if(userInput.nextInt()== numberLine.get(middle))
+	{
+		System.out.println("You are correct!\n");
+		qsCorrect++;
+	}
+	else
+	{
+		System.out.println("That is wrong.\n");
+		qsWrong++;
+	}
+	
+	
 	if(target < numberLine.get(middle))
 		{
 		right = middle -1;
@@ -85,13 +158,15 @@ while(left < right)
 		{
 		left = middle +1;
 		}
+	if(numberLine.get(middle)==target)
+	{
+		break;
 	}
-
-
-
-	
 	
 }
-			
-				
+		
+System.out.println("Out of " + qs + " questions answered, you got\n" + qsCorrect
+		+ " question(s) correct and " + qsWrong + " question(s) wrong.");
+System.out.println((double) qsCorrect/qs * 100 + "%");
+}
 }
